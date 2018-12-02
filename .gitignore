@@ -1,0 +1,7 @@
+*.exe
+*.stackdump
+*.pyd
+__pycache__
+.vscode
+*.dll
+*.so
