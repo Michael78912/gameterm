@@ -1,21 +1,24 @@
 """test the shell module using a thread."""
 
-
 import sys
+import os
+import threading
 # insert parent directory into PYTHONPATH
-sys.path.insert('..')
+sys.path.append(os.path.realpath('..'))
+print(sys.path)
 
 import pygame as pg
 
 import terminal
-import threading
+import shell
+
 
 def test_shell():
     """create and run shell, using three really stupid commands."""
     # initiate pygame, create shell object
     pg.init()
     display = pg.display.set_mode((500, 350))
-    shell = Shell(terminal.Terminal(display), display, prompt="> ")
+    shell = shell.Shell(terminal.Terminal(display), display, prompt="> ")
 
     # make sys.stdout, err, and in the terminal
     shell.bind()
@@ -26,7 +29,7 @@ def test_shell():
     clock = pg.time.Clock()
     fps = 60
 
-    @s.command
+    @shell.command
     def say_hi(hello: "say hello instead of hi"=False):
         """say hi.
         if hello is true, say hello instead.
@@ -34,7 +37,7 @@ def test_shell():
         print('hello' if hello else 'hi')
     
 
-    @s.command
+    @shell.command
     def add(num1: "first number", num2: "second number"):
         """
         add two numbers.
@@ -48,7 +51,7 @@ def test_shell():
         else:
             print(float(num1) + float(num2))
     
-    @s.command
+    @shell.command
     def echo():
         """ask user for input, and print it once enter has been pressed."""
         print(input())
@@ -57,10 +60,10 @@ def test_shell():
     while True:
         for event in pg.event.get():
             # add all events
-            s.add_event(event)
+            shell.add_event(event)
             if event.type == pg.QUIT:
                 raise SystemExit
-                
-        s.threaded_update()
+
+        shell.threaded_update()
         pg.display.update()
         clock.tick(fps)

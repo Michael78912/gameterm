@@ -157,46 +157,28 @@ class Shell:
 
 
 def test2():
-    import threading
+    import sys
+
+    import pygame
+
     import terminal
 
-    pg.init()
+    def main():
+        pygame.init()
+        display = pygame.display.set_mode((500, 350))
 
-    s = pg.display.set_mode((400, 300))
-    t = terminal.Terminal(s, terminal_size=(400, 300))
-    t.do_update = True
+        term = terminal.Terminal(display)
 
-    sys.stdout = t
-    sys.stdin = t
+        sys.stdout = term
+        sys.stdin = term
 
-    input('single-threaded: ')
-    t.do_update = False
+        # this will block, as term.readline will run until complete
+        print(input())
+        # hold the shell open until enter is pressed
+        input()
+    if __name__ == '__main__':
+        main()
 
-    d = threading.Thread(target=input, daemon=True, args=('double-threaded: ',))
-    d.start()
-
-    c = pg.time.Clock()
-    test = 0
-
-    while True:
-        test += 1
-        for e in pg.event.get():
-            if e.type == pg.QUIT:
-                pg.quit()
-                raise SystemExit
-            t.event_queue.put(e)
-        pg.display.update()
-        c.tick(60)
-
-
-    print('main thread exiting.')
-
-
-
-
-    # print(howdy.parser.parse_args(['8', '--feler', '0', '--bork', '4']).__dict__)
-
-    # s.run_cmd('howdy', {'howdy': "bork!"})
 
 if __name__ == "__main__":
-    test1()
+    test2()
