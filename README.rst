@@ -30,7 +30,8 @@ terminal
 constructor
 ***********
 
-``Terminal(surface,
+..code-block:: python
+    Terminal(surface,
               fps=60,                     # run at this FPS if in main thread
               bgcolour=BLACK,             # (0, 0, 0)
               fgcolour=WHITE,             # (255, 255, 255)
@@ -38,7 +39,9 @@ constructor
               font_size=12,               # font size (pixels)
               terminal_size=(500, 350),   # terminal size (pixels)
               add_safe=True,              # add a safe amount of height to the terminal in proportion to the font size
-          )``
+          )
+
+
 
 
 
