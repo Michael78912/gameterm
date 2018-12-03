@@ -158,31 +158,3 @@ class Shell:
             help_str += "\n\nfor help on any individual command, type <cmd> -h."
         
             print(help_str)
-
-
-def test2():
-    import sys
-
-    import pygame
-
-    import terminal
-
-    def main():
-        pygame.init()
-        display = pygame.display.set_mode((500, 350))
-
-        term = terminal.Terminal(display)
-
-        sys.stdout = term
-        sys.stdin = term
-
-        # this will block, as term.readline will run until complete
-        print(input())
-        # hold the shell open until enter is pressed
-        input()
-    if __name__ == '__main__':
-        main()
-
-
-if __name__ == "__main__":
-    test2()
