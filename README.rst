@@ -30,15 +30,15 @@ gameterm.terminal.Terminal
 methods
 *******
 
-``read()``: not implemented. will do nothing.
-``readline()``: read and return a single line. will act as a blocking function, until the user hits return.
-``write(text)``: add the text to the last line. split on newlines.
-``flush()``: do nothing. (implemented for use as a file stream)
-``get_surf()``: build and return a ``pygame.Surface`` object, representing the terminal.
-``echo(line)``: add line to the lines in the terminal.
-``draw_cursor()``: check if the cursor should be on or off. if it should be on, make sure it is rendered.
-``addch(char)``: add the character to the end of last line.
-``input(event)``: take the event object. if it is KEYDOWN, add the character to the last line.
+- ``read()``: not implemented. will do nothing.
+- ``readline()``: read and return a single line. will act as a blocking function, until the user hits return.
+- ``write(text)``: add the text to the last line. split on newlines.
+- ``flush()``: do nothing. (implemented for use as a file stream)
+- ``get_surf()``: build and return a ``pygame.Surface`` object, representing the terminal.
+- ``echo(line)``: add line to the lines in the terminal.
+- ``draw_cursor()``: check if the cursor should be on or off. if it should be on, make sure it is rendered.
+- ``addch(char)``: add the character to the end of last line.
+- ``input(event)``: take the event object. if it is KEYDOWN, add the character to the last line.
 
 constructor
 ***********
@@ -97,18 +97,18 @@ methods
 use whenever
 """"""""""""
 
-``bind()``: set sys.stdout, sys.stdin and sys.stdout to the current terminal.
-``run_cmd(cmd, args)``: run the command, if found, with arguments of args.
-``mainloop(fps)``: run a mainloop constantly, updating terminal, and running commands.
-``disable_help()``: disable the "help" command of the shell.
+- ``bind()``: set sys.stdout, sys.stdin and sys.stdout to the current terminal.
+- ``run_cmd(cmd, args)``: run the command, if found, with arguments of args.
+- ``mainloop(fps)``: run a mainloop constantly, updating terminal, and running commands.
+- ``disable_help()``: disable the "help" command of the shell.
 
 use when multithreading
 """""""""""""""""""""""
 
-``kill()``: stop the mainloop from running.
-``add_event(event)``: add the event to self, and terminal's queue.
-``command()``: use as a decorator, see commands_
-``threaded_update()``: use every frame to make sure the cursor is drawn correctly
+- ``kill()``: stop the mainloop from running.
+- ``add_event(event)``: add the event to self, and terminal's queue.
+- ``command()``: use as a decorator, see commands_
+- ``threaded_update()``: use every frame to make sure the cursor is drawn correctly
 
 
 constructor
