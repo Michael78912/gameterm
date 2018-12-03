@@ -176,9 +176,10 @@ Use with threading
 the following is the entire example from tests/test_shell.py. It demonstrates use of a shell with threading,
 allowing you to run the shell at the same time as your game.
 
-"""test the shell module using a thread."""
 
 .. code-block:: python
+
+    """test the shell module using a thread."""
 
     import sys
     import os
