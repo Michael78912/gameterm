@@ -31,6 +31,7 @@ constructor
 ***********
 
 ..code-block:: python
+
     Terminal(surface,
               fps=60,                     # run at this FPS if in main thread
               bgcolour=BLACK,             # (0, 0, 0)
@@ -48,6 +49,7 @@ constructor
 the following is a basic example of terminal's use, without threading.
 
 ..code-block:: python
+
     import sys
 
     import pygame
