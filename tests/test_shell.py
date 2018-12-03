@@ -30,7 +30,7 @@ def test_shell():
     fps = 60
 
     @shell.command
-    def say_hi(hello: "say hello instead of hi"=False):
+    def say_hi(hello: "say hello instead of hi" = False):
         """say hi.
         if hello is true, say hello instead.
         """

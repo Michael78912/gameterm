@@ -24,8 +24,21 @@ used to give the terminal some functionality.
 gameterm is desinged to work well with python's ``threading`` module, to allow functions like ``input()`` not
 to block the functionality of your game, or whatever you are doing.
 
-terminal
-========
+gameterm.terminal.Terminal
+==========================
+
+methods
+*******
+
+``read()``: not implemented. will do nothing.
+``readline()``: read and return a single line. will act as a blocking function, until the user hits return.
+``write(text)``: add the text to the last line. split on newlines.
+``flush()``: do nothing. (implemented for use as a file stream)
+``get_surf()``: build and return a ``pygame.Surface`` object, representing the terminal.
+``echo(line)``: add line to the lines in the terminal.
+``draw_cursor()``: check if the cursor should be on or off. if it should be on, make sure it is rendered.
+``addch(char)``: add the character to the end of last line.
+``input(event)``: take the event object. if it is KEYDOWN, add the character to the last line.
 
 constructor
 ***********
@@ -74,8 +87,30 @@ the following is a basic example of terminal's use, without threading.
     if __name__ == '__main__':
         main()
 
-a single threaded example will work just like a normal terminal window. The real usefulness comes with
-a couple threads.
+
+gameterm.shell.Shell
+====================
+
+methods
+*******
+
+use whenever
+""""""""""""
+
+``bind()``: set sys.stdout, sys.stdin and sys.stdout to the current terminal.
+``run_cmd(cmd, args)``: run the command, if found, with arguments of args.
+``mainloop(fps)``: run a mainloop constantly, updating terminal, and running commands.
+
+use when multithreading
+"""""""""""""""""""""""
+
+``kill()``: stop the mainloop from running.
+``add_event(event)``: add the event to self, and terminal's queue.
+``command``: use as a decorator, see `commands`_
+
+
+
+
 
 
 
