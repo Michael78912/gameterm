@@ -3,6 +3,8 @@ gameterm- terminal for pygame_ games
 ====================================
 .. _pygame: https://pygame.org
 
+.. image:: https://raw.githubusercontent.com/Michael78912/gameterm/master/screenshots/test_shell_bg.PNG
+
 .. contents ::
 
 *****
