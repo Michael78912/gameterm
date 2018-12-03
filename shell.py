@@ -45,6 +45,10 @@ class Shell:
         self.surface = surface
         self.pos = pos
         self.command_prefix = command_prefix
+    
+    def disable_help(self):
+        """disables the "help" command."""
+        self.help_enabled = False
 
     def bind(self):
         """bind the terminal to sys.stdout/in"""

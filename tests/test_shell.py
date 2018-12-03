@@ -4,13 +4,13 @@ import sys
 import os
 import threading
 # insert parent directory into PYTHONPATH
-sys.path.append(os.path.realpath('..'))
+sys.path.append(os.path.realpath('..\\gameterm'))
 print(sys.path)
 
 import pygame as pg
 
 import terminal
-import shell
+from shell import Shell
 
 
 def test_shell():
@@ -18,10 +18,10 @@ def test_shell():
     # initiate pygame, create shell object
     pg.init()
     display = pg.display.set_mode((500, 350))
-    shell = shell.Shell(terminal.Terminal(display), display, prompt="> ")
+    shell = Shell(terminal.Terminal(display), display, prompt="> ")
 
     # make sys.stdout, err, and in the terminal
-    shell.bind()
+    # shell.bind()
 
     # start the thread for handling the shell.
     threading.Thread(target=lambda: shell.mainloop(60), daemon=True).start()
@@ -41,7 +41,7 @@ def test_shell():
     def add(num1: "first number", num2: "second number"):
         """
         add two numbers.
-        
+
         note: if num1 is divisible by 8, it will say "howdy" instead.
         """
 
@@ -67,3 +67,5 @@ def test_shell():
         shell.threaded_update()
         pg.display.update()
         clock.tick(fps)
+
+test_shell()
