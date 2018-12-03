@@ -8,7 +8,7 @@ import threading
 
 import pygame as pg
 
-import _terminal_state
+from . import _terminal_state
 
 _MS_WINDOWS = sys.platform == "win32"
 _DEF_FONT = "Lucida Console" if _MS_WINDOWS else "monospace"
@@ -122,6 +122,8 @@ class Terminal:
 
         surf = pg.surface.Surface(self.terminal_size)
         surf.fill(self.bgcolour)
+        if len(self.bgcolour) == 4:
+            surf.set_alpha(self.bgcolour[3])
 
         x = 0
         y = 0

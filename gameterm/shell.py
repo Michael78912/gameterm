@@ -10,7 +10,7 @@ import argparse
 
 import pygame as pg
 
-import _command
+from . import _command
 
 
 class States(enum.Enum):
