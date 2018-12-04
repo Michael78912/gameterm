@@ -15,6 +15,11 @@ About
 it will have the abilty to return a surface of the terminal in its proper state. more info will come as 
 development continues!
 
+************
+Installation
+************
+- gameterm can be installed through pip. type `pip install gameterm`, or however you access pip.
+
 *****
 Usage
 *****

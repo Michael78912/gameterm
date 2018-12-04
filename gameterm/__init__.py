@@ -6,3 +6,7 @@ and simple to use.
 
 __author__ = 'Michael Gill <michael.78912.8@gmail.com>'
 __version__ = '0.0 Pre-Alpha'
+
+
+from . import terminal
+from . import shell
