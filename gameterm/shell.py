@@ -83,7 +83,8 @@ class Shell:
     def kill(self):
         """stop mainloop"""
         self._dead = True
-        self.terminal._dead = True
+        if threading.current_thread() != threading.main_thread():
+            self.terminal.kill()
 
     def add_event(self, event):
         """add the event to queue"""
@@ -154,6 +155,8 @@ class Shell:
         seperate thread. It helps do things like draw
         the cursor, etc...
         """
+        if self._dead:
+            return
         self.terminal.draw_cursor()
         self.surface.blit(self.terminal.get_surf(), self.pos)
     

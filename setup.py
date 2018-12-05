@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'gameterm',         
   packages = ['gameterm'],   # Chose the same as "name"
-  version = '0.1.2',      # Start with a small number and increase it with every change you make
+  version = '0.1.3',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Display a terminal inside a pygame program',   # Give a short description about your library
   author = 'Michael Gill',                   # Type in your name

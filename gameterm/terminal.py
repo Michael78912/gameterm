@@ -3,8 +3,10 @@
 __all__ = ["Terminal"]
 
 import sys
+import time
 import queue
 import threading
+import collections
 
 import pygame as pg
 
@@ -13,12 +15,17 @@ from . import _terminal_state
 _MS_WINDOWS = sys.platform == "win32"
 _DEF_FONT = "Lucida Console" if _MS_WINDOWS else "monospace"
 
+class _FakeEvent:
+    """holds a fake event."""
+
+
 # colour definitions.
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 # 30 frames no there, 30 frames there.
 CURSORFRAMES = 30
+
 
 
 class Terminal:
@@ -45,7 +52,7 @@ class Terminal:
         """read and return a single line, (running in main thread)"""
         finished = False
 
-        while not finished:
+        while not finished or not self.dead:
             for ev in pg.event.get():
                 finished = self.input(ev)
 
@@ -75,6 +82,10 @@ class Terminal:
         return self._readline_main() if \
             threading.main_thread() == threading.current_thread() \
             else self._readline_threaded()
+    
+    def kill(self):
+        """raise a systemexit in the current thread."""
+        raise SystemExit
 
 
     # pylint: disable=too-many-arguments

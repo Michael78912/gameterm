@@ -4,14 +4,10 @@ import sys
 import os
 import threading
 
-# insert parent directory into PYTHONPATH
-sys.path.append(os.path.realpath('..\\gameterm'))
-print(sys.path)
-
 import pygame as pg
 
-import terminal
-from shell import Shell
+from gameterm.terminal import Terminal
+from gameterm.shell import Shell
 
 def test_shell_2():
     """create and run shell, using three really stupid commands."""
@@ -19,7 +15,7 @@ def test_shell_2():
     pg.init()
     pg.display.set_caption("Test Shell (with background image)")
     display = pg.display.set_mode((600, 400))
-    shell = Shell(terminal.Terminal(display, bgcolour=(0, 0, 0, 200)), display, prompt="> ")
+    shell = Shell(Terminal(display, bgcolour=(0, 0, 0, 200)), display, prompt="> ")
 
     # make sys.stdout, err, and in the terminal
     shell.bind()
@@ -36,6 +32,11 @@ def test_shell_2():
         if hello is true, say hello instead.
         """
         print('hello' if hello else 'hi')
+
+    @shell.command
+    def exit():
+        """kill the shell."""
+        shell.kill()
     
 
     @shell.command
