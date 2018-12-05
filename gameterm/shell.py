@@ -32,6 +32,7 @@ class Shell:
     """adds some functionality to terminal."""
 
     surface = None
+    _old_files = [None, None, None]
     help_enabled = True
     commands = []
     _events = []
@@ -46,12 +47,19 @@ class Shell:
         self.pos = pos
         self.command_prefix = command_prefix
     
+    def __del__(self):
+        """restore old files."""
+        sys.stdout = self._old_files[0]
+        sys.stdin = self._old_files[1]
+        sys.stderr = self._old_files[2]
+    
     def disable_help(self):
         """disables the "help" command."""
         self.help_enabled = False
 
     def bind(self):
         """bind the terminal to sys.stdout/in"""
+        self._old_files = [sys.stdout, sys.stdin, sys.stderr]
         sys.stdout = self.terminal
         sys.stdin = self.terminal
         sys.stderr = self.terminal
